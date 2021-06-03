@@ -10,16 +10,20 @@ module Api
       api :GET, "/smart_proxies/", N_("List all smart proxies")
       param_group :taxonomy_scope, ::Api::V2::BaseController
       param_group :search_and_pagination, ::Api::V2::BaseController
+      param :include_status, :bool, N_("Flag to indicate if to include status or not")
       add_scoped_search_description_for(SmartProxy)
 
       def index
         @smart_proxies = resource_scope_for_index.includes(:features)
+        @status = params[:include_status]
       end
 
       api :GET, "/smart_proxies/:id/", N_("Show a smart proxy")
       param :id, :identifier, :required => true
+      param :include_status, :bool, N_("Flag to indicate if to include status or not")
 
       def show
+        @status = params[:include_status]
       end
 
       def_param_group :smart_proxy do

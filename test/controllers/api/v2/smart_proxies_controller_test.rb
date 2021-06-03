@@ -6,7 +6,7 @@ class Api::V2::SmartProxiesControllerTest < ActionController::TestCase
   include SmartProxiesControllerSharedTest
 
   setup do
-    stub_smart_proxy_v2_features
+    stub_smart_proxy_v2_features_and_statuses
   end
 
   test "should get index" do
